@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.cdnfonts.com/css/sf-pro-display?styles=98774,98777,98776,98772,98773,98775,98770,98771,98769"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Fintegre Case</title>
+  </head>
+  <body>
+    <div class="container">
+      <!--Sol Taraf-->
+      <!--Geri Tuşu-->
+      <div class="back">
+        <img src="./img/back.png" alt="" />
+      </div>
+
+      <div class="left__side">
+        <!--Başlık bölümü-->
+        <div class="text__area">
+          <h1>Kişisel bilgilerinizi doldurunuz</h1>
+          <p>
+            Geri alım sürecinizi hızlı ve sorunsuz bir şekilde ilerletmek için
+            bilgilerinizi eksiksiz bir şekilde doldurunuz.
+          </p>
+        </div>
+
+        <!--Form Section-->
+        <form
+          class="form__section"
+          id="myForm"
+          onsubmit="completeRefundRequest(event)"
+        >
+          <div class="form__left">
+            <div class="form__layout">
+              <label for="tcNo">TC Kimlik Numarası</label>
+              <input
+                type="tel"
+                id="tcNo"
+                name="requiredField1"
+                maxlength="11"
+                minlength="11"
+                pattern=".{3,}"
+                title="En az 11 karakter girmelisiniz"
+                required
+              />
+            </div>
+            <div class="form__layout">
+              <label for="name">Ad</label>
+              <input type="text" id="name" name="name" />
+            </div>
+            <div class="form__layout">
+              <label for="lname">Soyad</label>
+              <input type="text" id="lname" name="lname" />
+            </div>
+            <div class="form__layout">
+              <label for="birthYear">Doğum Yılı</label>
+              <input
+                type="tel"
+                id="birthYear"
+                name="birthYear"
+                pattern="\d{4}"
+                maxlength="4"
+                placeholder="YYYY"
+                oninput="formatBirthYear(this)"
+              />
+            </div>
+          </div>
+          <div class="form__right">
+            <div class="form__layout">
+              <label for="gsm">GSM Numarası</label>
+              <input
+                type="tel"
+                id="gsm"
+                name="gsm"
+                maxlength="15"
+                placeholder="(___) ___ __ __"
+                oninput="formatGsm(this)"
+              />
+            </div>
+            <div class="form__layout">
+              <label for="email">E-posta Adresi</label>
+              <input type="email" id="email" name="email" />
+            </div>
+            <div class="form__layout">
+              <label for="ibanName">IBAN Sahibinin Ad Soyad</label>
+              <input type="text" id="ibanName" name="ibanName" />
+            </div>
+            <div class="form__layout">
+              <label for="ibanNo">Paranın Yatırılacağı IBAN Numarası</label>
+              <input
+                type="text"
+                id="iban"
+                name="iban"
+                pattern="TR\d{2}\s\d{4}\s\d{4}\s\d{4}\s\d{4}\s\d{4}\s\d{2}"
+                maxlength="32"
+                placeholder="TR__ ____ ____ ____ ____ ____ __"
+                oninput="formatIBAN(this)"
+              />
+              <img class="info-icon" src="./img/info.png" alt="" />
+              <div class="info-tooltip">
+                <div class="triangle"></div>
+                Teklifi kabul etmeniz durumunda belirlenen ücretin hesabınıza
+                yatırılması için IBAN numarınızı paylaşmanız gerekmektedir.
+              </div>
+            </div>
+          </div>
+          <div class="checbox__section">
+            <div class="checbox__left">
+              <label class="checkbox__layout">
+                <div>
+                  <input
+                    type="checkbox"
+                    id="onayCheckbox1"
+                    required
+                    name="requiredField2"
+                  />
+                </div>
+                <div>
+                  <span id="metinLabel"> Cihaz Aydınlatma Metnini </span> okudum
+                  ve onaylıyorum.
+                </div>
+              </label>
+              <label class="checkbox__layout">
+                <div>
+                  <input type="checkbox" id="onayCheckbox2" />
+                </div>
+                <div>
+                  <span id="metinLabel2"> Geri Alım Sözleşmesini</span> okudum
+                  ve onaylıyorum.
+                </div>
+              </label>
+            </div>
+            <div class="checbox__right">
+              <label class="checkbox__layout">
+                <div>
+                  <input type="checkbox" id="onayCheckbox3" />
+                </div>
+                <div>
+                  <span id="metinLabel3">
+                    Ticari bilgilendirme Sözleşmesini</span
+                  >
+                  okudum ve onaylıyorum.
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="left__bottom__layout">
+            <div class="submit__button">
+              <button type="submit" onclick="completeRefundRequest()">
+                <span class="loader" id="loader"></span>
+                Geri Alım Talebini Tamamla
+              </button>
+            </div>
+            <div class="more__info">
+              Değiş-Tokuş hakkında <span> daha fazla bilgi edinin </span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!--Sağ Taraf-->
+      <div class="right__side">
+        <!--İptal-->
+        <div class="cancel__button" onclick="openModal()">
+          <img src="./img/cancel.png" alt="" id="cancelButton" />
+        </div>
+
+        <div class="modal" id="myModal" onclick="closeModal(event)">
+          <div class="modal-content" onclick="stopPropagation(event)">
+            <span class="close" onclick="closeModal(event)" id="close"
+              >&times;</span
+            >
+            <div class="modal__layout">
+              <div>
+                <img src="./img/modal__cancel.png" alt="" />
+              </div>
+              <div>
+                <h4>İşleminiz henüz tamamlanmadı.</h4>
+                <p>
+                  Bize işlemi neden tamamlamak istemediğinizi söyleyebilir
+                  misiniz?
+                </p>
+                <div class="combobox-container">
+                  <input
+                    type="text"
+                    id="combobox-input"
+                    placeholder="Seçiniz"
+                  />
+                  <ul class="dropdown-list">
+                    <li onclick="selectItem('Seçiniz')">Seçiniz</li>
+                    <li onclick="selectItem('Teklifi beğenmedim')">
+                      Teklifi beğenmedim
+                    </li>
+                    <li onclick="selectItem('Başka bir yerden teklif aldım')">
+                      Başka bir yerden teklif aldım
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <button>Devam Et</button>
+              </div>
+              <div>
+                <span onclick="closeModal(event)">Çıkış</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Sağ Üst-->
+        <div class="top__right">
+          <div class="sum">
+            <h1>İşlem Özeti</h1>
+          </div>
+          <div class="products__detail">
+            <div><img src="./img/iPhone.png" alt="" /></div>
+            <div class="products__text">
+              <span>Geri Alınacak Cihaz</span>
+              <span
+                >Apple iPhone 11 <br />
+                Mor - 128 GB</span
+              >
+            </div>
+          </div>
+          <div class="products__detail">
+            <div><img src="./img/image 1.png" alt="" /></div>
+            <div class="products__text">
+              <span>Yeni Cihaz</span>
+              <span
+                >Apple iPhone 13 <br />
+                Black - 256 GB</span
+              >
+            </div>
+          </div>
+        </div>
+        <!--Sağ Alt-->
+        <div class="bottom_right">
+          <div class="offer__text">
+            <h1>Geri Alım Teklifi</h1>
+          </div>
+          <div class="offer__detail">
+            <div>
+              <span>Yeni Cihaz Değeri:</span>
+              <span>22.500 TL</span>
+            </div>
+          </div>
+          <div class="offer__detail">
+            <div>
+              <span>Eski Cihaz Değeri:</span>
+              <span>-2.500 TL</span>
+            </div>
+          </div>
+          <div class="offer__detail">
+            <div>
+              <span>Ek Kampanya Tutarı:</span>
+              <span>-2.000 TL</span>
+            </div>
+          </div>
+          <div class="total__price">
+            <span>Toplam Teklif</span>
+            <span>15.000 TL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+    <script src="./js/combobox.js"></script>
+  </body>
+</html>

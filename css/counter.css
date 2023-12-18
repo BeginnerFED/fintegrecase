@@ -1,0 +1,88 @@
+.base-timer {
+  position: relative;
+  width: 8.75rem;
+  height: 8.75rem;
+}
+
+.base-timer__svg {
+  transform: scaleX(-1);
+}
+
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: rgba(210, 210, 215, 0.6);
+}
+
+.base-timer__path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.green {
+  color: #0071e3;
+}
+
+.base-timer__path-remaining.orange {
+  color: orange;
+}
+
+.base-timer__path-remaining.red {
+  color: red;
+}
+
+.base-timer__label {
+  position: absolute;
+  color: #1d1d1f;
+  font-size: 2.375rem;
+  width: 3rem;
+  height: 3rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  top: 0;
+  left: 0;
+  transform: translate(100%, 75%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem 0 0 0;
+}
+
+.counter > div:nth-child(2) {
+  position: absolute;
+  transform: translate(5%, -50%);
+  color: #6e6e73;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.counter > div:nth-child(3) {
+  color: #6e6e73;
+  text-align: center;
+  max-width: 13.8125rem;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 128.336%; /* 1.28338rem */
+  margin: 1.5rem 0 0 0;
+}

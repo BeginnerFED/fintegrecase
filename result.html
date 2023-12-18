@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.cdnfonts.com/css/sf-pro-display?styles=98774,98777,98776,98772,98773,98775,98770,98771,98769"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/counter.css" />
+    <title>Fintegre Case</title>
+  </head>
+  <body>
+    <div class="container">
+      <!--Geri Tuşu-->
+      <div class="back" onclick="goBack()">
+        <img src="./img/back.png" alt="" />
+      </div>
+
+      <!-- Sol Taraf-->
+      <div class="left__side">
+        <div class="result__upleft__text">
+          <h5>Geri alım talebinizi aldık.</h5>
+          <h4>Şimdi yeni cihazınızı almalısınız.</h4>
+          <p>
+            Geri alım teklifinden faydalanmak için yeni cihazınızın satın alma
+            işlemini
+            <span> 24 saat içerisinde tamamlanız gerekmektedir.</span> Aksi
+            halde, cihaz yenileme talebiniz geçersiz olacaktır.
+          </p>
+        </div>
+
+        <div class="exchange">
+          <div class="exchange__title">Değiş-Tokuş İşlem Özeti</div>
+          <div class="exchange__layout">
+            <div class="exchange__sum">
+              <div>
+                <img src="./img/iPhone.png" alt="" />
+              </div>
+              <div>
+                <span>Geri Alınacak Cihaz</span>
+                <span
+                  >Apple iPhone 11 <br />
+                  Mor - 128 GB</span
+                >
+              </div>
+            </div>
+
+            <div class="exchange__sum">
+              <div>
+                <img src="./img/image 1.png" alt="" />
+              </div>
+              <div>
+                <span>Geri Alınacak Cihaz</span>
+                <span
+                  >Apple iPhone 11 <br />
+                  Mor - 128 GB</span
+                >
+              </div>
+            </div>
+
+            <div class="exchange__total">
+              <span>Toplam Teklif</span>
+              <span>15.000 TL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="referance">
+          <div class="ref__title">
+            <h5>Referans Numarası</h5>
+          </div>
+          <div class="ref__no">
+            <span id="refNumber">1234-5678-9012</span>
+            <img onclick="copyReferenceNumber()" src="./img/copy.png" alt="" />
+            <div class="notification" id="notification">
+              Referans numarası kopyalandı
+            </div>
+          </div>
+          <div class="ref__text">
+            <p>
+              Geri Alım Sürecinizi referans numaranız ile takip edebilirsiniz.
+            </p>
+          </div>
+        </div>
+
+        <div class="result__moreinfo">
+          <p>Değiş-Tokuş hakkında <span> daha fazla bilgi edinin</span></p>
+        </div>
+      </div>
+
+      <!-- İptal Butonu-->
+      <div class="cancel__button" onclick="openModal()">
+        <img src="./img/cancel.png" alt="" id="cancelButton" />
+      </div>
+
+      <div class="modal" id="myModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="stopPropagation(event)">
+          <span class="close" onclick="closeModal(event)" id="close"
+            >&times;</span
+          >
+          <div class="modal__layout">
+            <div>
+              <img src="./img/modal__cancel.png" alt="" />
+            </div>
+            <div>
+              <h4>İşleminiz henüz tamamlanmadı.</h4>
+              <p>
+                Bize işlemi neden tamamlamak istemediğinizi söyleyebilir
+                misiniz?
+              </p>
+              <div class="combobox-container">
+                <input type="text" id="combobox-input" placeholder="Seçiniz" />
+                <ul class="dropdown-list">
+                  <li onclick="selectItem('Seçiniz')">Seçiniz</li>
+                  <li onclick="selectItem('Teklifi beğenmedim')">
+                    Teklifi beğenmedim
+                  </li>
+                  <li onclick="selectItem('Başka bir yerden teklif aldım')">
+                    Başka bir yerden teklif aldım
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <button>Devam Et</button>
+            </div>
+            <div>
+              <span onclick="closeModal(event)">Çıkış</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Sağ Taraf-->
+      <div class="right__side">
+        <div class="whats__next">
+          <div class="next__title">
+            <h6>Şimdi sırada ne var?</h6>
+          </div>
+          <div class="next__process">
+            <div>
+              <img src="./img/shipping.png" alt="" />
+              <p>Geri gönderim kiti ile eski cihazınızı bize gönderin.</p>
+            </div>
+
+            <div>
+              <img src="./img/files.png" alt="" />
+              <p>
+                Cihaz testleri tamamlandıktan sonra size son teklifi sunacağız.
+              </p>
+            </div>
+
+            <div>
+              <img src="./img/payment.png" alt="" />
+              <p>
+                Kabul etmeniz durumunda tutarı banka hesabınıza göndereceğiz.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="counter">
+          <div id="app"></div>
+          <div>Saniye</div>
+          <div>sonra yeni cihaz satın alımı için yönlendireceksiniz.</div>
+        </div>
+
+        <div class="continue">
+          <button>Yeni cihaz için alışverişe devam et</button>
+        </div>
+
+        <div class="sss">
+          <a href="#"
+            >Sıkça Sorulan Sorular <img src="./img/sss.png" alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/script.js"></script>
+    <script src="./js/combobox.js"></script>
+    <script src="./js/counter.js"></script>
+  </body>
+</html>
